@@ -516,29 +516,222 @@ body {
     }
 }
 
+@media (max-width: 1024px) {
+    .disclaimer-signatures {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
 @media (max-width: 768px) {
     .app-header h1 {
-        font-size: 1.8em;
+        font-size: 1.5em;
+    }
+
+    .app-header {
+        padding: 12px 20px;
+    }
+
+    .subtitle {
+        font-size: 0.85em;
     }
 
     .form-content {
-        padding: 20px;
+        padding: 20px 15px;
     }
 
     .controls {
         flex-direction: column;
+        padding: 15px 20px;
     }
 
     .btn {
         width: 100%;
+        margin-left: 0 !important;
+    }
+
+    .document-header h2 {
+        font-size: 1.3em;
+    }
+
+    .document-header h3 {
+        font-size: 1em;
+    }
+
+    .section h3 {
+        font-size: 1.1em;
     }
 
     .risk-table {
-        font-size: 0.85em;
+        font-size: 0.75em;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .risk-table th,
     .risk-table td {
+        padding: 6px 8px;
+        font-size: 0.85em;
+    }
+
+    .templates-section {
+        padding: 15px 20px;
+    }
+
+    .templates-section h3 {
+        font-size: 1.1em;
+    }
+
+    .template-card {
+        min-width: 150px;
+        padding: 15px;
+    }
+
+    .template-card-icon {
+        font-size: 2em;
+    }
+
+    .template-card-name {
+        font-size: 1em;
+    }
+
+    .disclaimer-box {
+        padding: 15px;
+    }
+
+    .disclaimer-box h4 {
+        font-size: 1.1em;
         padding: 8px;
+    }
+
+    .disclaimer-warning {
+        padding: 15px;
+    }
+
+    .disclaimer-footer {
+        padding: 15px;
+        font-size: 0.85em;
+    }
+
+    .signature-block {
+        padding: 12px;
+    }
+
+    .signature-block p {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .app-header h1 {
+        font-size: 1.2em;
+    }
+
+    .form-content {
+        padding: 15px 10px;
+    }
+
+    .controls {
+        padding: 12px 15px;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+
+    .document-header h2 {
+        font-size: 1.1em;
+        letter-spacing: 0.5px;
+    }
+
+    .document-header h3 {
+        font-size: 0.9em;
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .section h3 {
+        font-size: 1em;
+    }
+
+    .editable-content {
+        font-size: 0.95em;
+    }
+
+    .location-section,
+    .contractor-section {
+        padding: 12px;
+    }
+
+    .risk-table {
+        font-size: 0.7em;
+    }
+
+    .risk-table th,
+    .risk-table td {
+        padding: 5px 6px;
+        font-size: 0.8em;
+    }
+
+    .templates-list {
+        gap: 10px;
+    }
+
+    .template-card {
+        min-width: 100%;
+        padding: 12px;
+    }
+
+    .template-card-icon {
+        font-size: 1.8em;
+    }
+
+    .disclaimer-box {
+        padding: 12px;
+    }
+
+    .disclaimer-box h4 {
+        font-size: 1em;
+        letter-spacing: 1px;
+    }
+
+    .disclaimer-warning {
+        padding: 12px;
+    }
+
+    .disclaimer-warning p strong {
+        font-size: 1em;
+    }
+
+    .disclaimer-footer {
+        padding: 12px;
+        font-size: 0.8em;
+    }
+
+    .signature-block {
+        padding: 10px;
+    }
+
+    .signature-block p {
+        font-size: 0.85em;
+        margin-bottom: 8px;
+    }
+
+    .signature-note {
+        font-size: 0.75em;
     }
 }
