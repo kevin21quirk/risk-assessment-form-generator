@@ -141,10 +141,25 @@ risk_assessment_form/
 
 ## Security Notes
 
-- Authentication is client-side only (suitable for internal use)
-- For production use with sensitive data, consider implementing server-side authentication
-- Change default credentials after deployment
-- Templates are stored locally in the browser
+- **Password Hashing**: Passwords are hashed using SHA-256 before comparison
+- **Client-Side Authentication**: Suitable for internal use with trusted users
+- **Hash Storage**: Only password hashes are stored in the code, not plain text passwords
+- **Session Management**: Uses browser sessionStorage for authentication state
+- **Templates**: Stored locally in browser localStorage (per-device)
+
+### Security Level
+This implementation provides **moderate security** through password hashing:
+- ✅ Passwords are not visible in plain text in the source code
+- ✅ SHA-256 hashing makes casual inspection more difficult
+- ⚠️ Still client-side only - determined users with technical knowledge could bypass
+- ⚠️ For highly sensitive data, consider server-side authentication
+
+### Changing Credentials
+To change the password:
+1. Generate a new SHA-256 hash of your desired password
+2. Update `VALID_PASSWORD_HASH` in `login.js`
+3. Update `VALID_USERNAME` if needed
+4. Commit and push changes
 
 ## Support
 
