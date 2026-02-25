@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (username === VALID_USERNAME && passwordHash === VALID_PASSWORD_HASH) {
             sessionStorage.setItem('authenticated', 'true');
             sessionStorage.setItem('username', username);
-            window.location.href = 'index.html';
+            window.location.href = 'app.html';
         } else {
             errorMessage.style.display = 'block';
             passwordInput.value = '';

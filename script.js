@@ -1,5 +1,5 @@
 if (!sessionStorage.getItem('authenticated')) {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 let editMode = false;
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (confirm('Are you sure you want to logout?')) {
             sessionStorage.removeItem('authenticated');
             sessionStorage.removeItem('username');
-            window.location.href = 'login.html';
+            window.location.href = 'index.html';
         }
     }
 

@@ -3,311 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risk Assessment Form Generator - Abbey Healthcare</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <title>Login - Risk Assessment Form Generator</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="container">
-        <header class="app-header">
-            <h1>Risk Assessment Form Generator</h1>
-            <p class="subtitle">Abbey Healthcare - IT Digitisation & Secure Records Transfer</p>
-        </header>
-
-        <div id="templatesSection" class="templates-section" style="display: none;">
-            <h3>Saved Templates</h3>
-            <div id="templatesList" class="templates-list"></div>
-        </div>
-
-        <div class="controls">
-            <button id="editModeBtn" class="btn btn-primary">Enable Edit Mode</button>
-            <button id="addSectionBtn" class="btn btn-secondary" style="display: none;">Add Custom Section</button>
-            <button id="saveTemplateBtn" class="btn btn-info">Save as Template</button>
-            <button id="downloadPdfBtn" class="btn btn-success">Download PDF</button>
-            <button id="logoutBtn" class="btn btn-danger" style="margin-left: auto;">Logout</button>
-        </div>
-
-        <div id="formContent" class="form-content">
-            <div class="document-header">
-                <h2 contenteditable="false" class="editable-title">RISK ASSESSMENT & DATA HANDLING AGREEMENT</h2>
-                <h3 contenteditable="false" class="editable-subtitle">IT Digitisation & Secure Records Transfer</h3>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>Risk Assessment Form Generator</h1>
+                <p>Abbey Healthcare - Secure Access</p>
             </div>
-
-            <div class="section location-section">
-                <h4>Location:</h4>
-                <div contenteditable="false" class="editable-content location-content">
-Applecroft Care Home
-Sanctuary Close
-River
-Dover
-Kent
-CT17 0ER</div>
-            </div>
-
-            <div class="section contractor-section">
-                <p><strong>Contractor:</strong> <span contenteditable="false" class="editable-inline">Kevin Quirk</span></p>
-                <p><strong>Date:</strong> <span contenteditable="false" class="editable-inline">___________________________</span></p>
-                <p><strong>Project Lead:</strong> <span contenteditable="false" class="editable-inline">___________________________</span></p>
-            </div>
-
-            <div class="section" data-section="scope">
-                <h3 contenteditable="false" class="editable-heading">1. Scope of Work</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p>The Contractor, Kevin Quirk, will:</p>
-                    <ul>
-                        <li>Digitise paper-based resident and operational records.</li>
-                        <li>Upload records to a secure Microsoft SharePoint environment.</li>
-                        <li>Verify completeness and accessibility of uploaded files.</li>
-                        <li>Securely shred paper records following written authorisation.</li>
-                        <li>Maintain strict confidentiality at all times.</li>
-                    </ul>
-                    <p>This engagement does not include clinical care, supervision of residents, or operational involvement beyond digitisation.</p>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
                 </div>
-            </div>
-
-            <div class="section" data-section="safeguarding">
-                <h3 contenteditable="false" class="editable-heading">2. Safeguarding & Resident Contact</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p><strong>The Contractor agrees:</strong></p>
-                    <ul>
-                        <li>All work will be conducted under supervised conditions as arranged by the Care Home.</li>
-                        <li>Work will be conducted in designated administrative areas wherever reasonably possible.</li>
-                        <li>No direct or unsupervised engagement with residents will occur.</li>
-                        <li>The Contractor will not interact with residents during the course of work.</li>
-                        <li>The Contractor will not enter resident bedrooms or private care areas unless expressly authorised for access.</li>
-                        <li>The Contractor will not provide care, assistance, or supervision to residents.</li>
-                        <li>Any safeguarding concerns observed will be immediately reported to the Registered Manager.</li>
-                        <li>No photography, recording, or disclosure of resident information outside professional necessity will take place.</li>
-                    </ul>
-                    <p>Applecroft Care Home confirms appropriate site supervision arrangements are in place and will be maintained throughout the engagement.</p>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
                 </div>
-            </div>
-
-            <div class="section" data-section="data-protection">
-                <h3 contenteditable="false" class="editable-heading">3. Data Protection & Confidentiality</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p><strong>The Contractor confirms:</strong></p>
-                    <ul>
-                        <li>All accessed information is confidential and sensitive.</li>
-                        <li>Data will only be accessed for the sole purpose of digitisation.</li>
-                        <li>No resident data will be retained on personal devices once uploaded.</li>
-                        <li>All devices used are encrypted and password protected.</li>
-                        <li>Microsoft SharePoint access is secured using Multi-Factor Authentication (MFA).</li>
-                        <li>No data will be transferred outside authorised systems.</li>
-                        <li>Full compliance with UK GDPR and the Data Protection Act 2018.</li>
-                    </ul>
-                    <p><strong>Applecroft Care Home confirms:</strong></p>
-                    <ul>
-                        <li>It holds lawful authority to digitise and destroy records.</li>
-                        <li>Retention policies have been reviewed prior to authorising destruction.</li>
-                        <li>Written authorisation will be provided before shredding any records.</li>
-                    </ul>
+                
+                <div id="errorMessage" class="error-message" style="display: none;">
+                    Invalid username or password. Please try again.
                 </div>
-            </div>
-
-            <div class="section" data-section="destruction">
-                <h3 contenteditable="false" class="editable-heading">4. Secure Destruction Procedure</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p>Paper records will only be destroyed:</p>
-                    <ul class="checkbox-list">
-                        <li>☐ After written confirmation from authorised Care Home Management</li>
-                        <li>☐ After verification of successful and complete digital storage</li>
-                        <li>☐ Using cross-cut shredding or certified confidential waste disposal</li>
-                    </ul>
-                    <p><strong>A Record Destruction Log shall include:</strong></p>
-                    <ul>
-                        <li>Description of records</li>
-                        <li>Date digitised</li>
-                        <li>Date destroyed</li>
-                        <li>Authorising manager signature</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section" data-section="risk-assessment">
-                <h3 contenteditable="false" class="editable-heading">5. Risk Assessment</h3>
-                <div contenteditable="false" class="editable-content">
-                    <table class="risk-table">
-                        <thead>
-                            <tr>
-                                <th>Hazard</th>
-                                <th>Persons at Risk</th>
-                                <th>Risk Level</th>
-                                <th>Control Measures</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Confidential data breach</td>
-                                <td>Residents</td>
-                                <td>Medium</td>
-                                <td>Encrypted devices, MFA, restricted permissions</td>
-                            </tr>
-                            <tr>
-                                <td>Unauthorised file access</td>
-                                <td>Residents</td>
-                                <td>Medium</td>
-                                <td>SharePoint role-based access control</td>
-                            </tr>
-                            <tr>
-                                <td>Trip hazards from IT equipment</td>
-                                <td>Staff/Visitors</td>
-                                <td>Low</td>
-                                <td>Equipment contained and monitored</td>
-                            </tr>
-                            <tr>
-                                <td>Infection transmission</td>
-                                <td>Residents</td>
-                                <td>Low</td>
-                                <td>Hand hygiene, compliance with home policy</td>
-                            </tr>
-                            <tr>
-                                <td>Accidental resident interaction</td>
-                                <td>Residents</td>
-                                <td>Low</td>
-                                <td>Work restricted to office areas</td>
-                            </tr>
-                            <tr>
-                                <td>Electrical/fire risk</td>
-                                <td>All occupants</td>
-                                <td>Low</td>
-                                <td>PAT tested equipment</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="section" data-section="infection">
-                <h3 contenteditable="false" class="editable-heading">6. Infection Prevention & Control</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p><strong>The Contractor agrees:</strong></p>
-                    <ul>
-                        <li>Not to attend site if unwell.</li>
-                        <li>To follow Applecroft Care Home infection control procedures.</li>
-                        <li>To sanitise hands before and after handling documents.</li>
-                        <li>To comply with outbreak restrictions or enhanced precautions if applicable.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section" data-section="responsibilities">
-                <h3 contenteditable="false" class="editable-heading">7. Responsibilities</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p><strong>Contractor Responsibilities:</strong></p>
-                    <ul>
-                        <li>Maintain strict confidentiality.</li>
-                        <li>Operate secure digital systems.</li>
-                        <li>Ensure safe working practices.</li>
-                        <li>Maintain a secure and tidy workspace.</li>
-                        <li>Liaise with the designated Archiving Manager regarding records management.</li>
-                        <li>Immediately report any data or safety incidents.</li>
-                    </ul>
-                    <p><strong>Care Home Responsibilities:</strong></p>
-                    <ul>
-                        <li>Provide secure access to relevant records.</li>
-                        <li>Provide a designated workspace where possible.</li>
-                        <li>Provide a named safeguarding contact.</li>
-                        <li>Designate an Archiving Manager as the primary liaison for records management.</li>
-                        <li>Ensure appropriate supervision arrangements are in place.</li>
-                        <li>Authorise destruction of documents in writing.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section" data-section="liability">
-                <h3 contenteditable="false" class="editable-heading">8. Limitation of Liability</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p><strong>The Contractor shall not be liable for:</strong></p>
-                    <ul>
-                        <li>Pre-existing data inaccuracies within original records.</li>
-                        <li>Retention decisions made by the Care Home.</li>
-                        <li>Loss arising from failure of third-party systems outside the Contractor's reasonable control, provided reasonable security measures are in place.</li>
-                    </ul>
-                    <p>Liability for data handling shall be limited to the extent permitted under applicable law.</p>
-                </div>
-            </div>
-
-            <div class="section" data-section="declaration">
-                <h3 contenteditable="false" class="editable-heading">9. Declaration</h3>
-                <div contenteditable="false" class="editable-content">
-                    <p>By signing below, both parties confirm agreement to the above risk controls, safeguarding provisions, and data protection responsibilities.</p>
-                    
-                    <div class="signature-block">
-                        <p><strong>Contractor: Kevin Quirk</strong></p>
-                        <p>Name: __________________________</p>
-                        <p>Signature: ______________________</p>
-                        <p>Date: __________________________</p>
-                    </div>
-
-                    <div class="signature-block">
-                        <p><strong>For Applecroft Care Home</strong></p>
-                        <p>Name: __________________________</p>
-                        <p>Position: _______________________</p>
-                        <p>Signature: ______________________</p>
-                        <p>Date: __________________________</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section disclaimer-section" data-section="disclaimer">
-                <h3 contenteditable="false" class="editable-heading">10. Professional Disclaimer & Authorisation</h3>
-                <div contenteditable="false" class="editable-content">
-                    <div class="disclaimer-box">
-                        <h4>IMPORTANT NOTICE</h4>
-                        <p>This disclaimer confirms that the undersigned authorised representatives of the Care Home have:</p>
-                        <ul>
-                            <li>Reviewed and approved the scope of work outlined in this Risk Assessment & Data Handling Agreement.</li>
-                            <li>Confirmed that all records to be digitised are within the lawful authority of the Care Home to process and destroy.</li>
-                            <li>Verified that appropriate supervision arrangements are in place for the duration of the contractor's engagement.</li>
-                            <li>Designated an Archiving Manager as the primary liaison for all records management activities.</li>
-                            <li>Ensured that the contractor will not interact with residents and will work in designated administrative areas.</li>
-                            <li>Confirmed that written authorisation will be provided before any records are destroyed.</li>
-                        </ul>
-                        
-                        <div class="disclaimer-warning">
-                            <p><strong>⚠ ACKNOWLEDGEMENT OF RESPONSIBILITY</strong></p>
-                            <p>The Care Home acknowledges that it retains full responsibility for:</p>
-                            <ul>
-                                <li>The accuracy and completeness of records provided for digitisation.</li>
-                                <li>Compliance with all applicable data protection legislation and retention policies.</li>
-                                <li>Ensuring appropriate safeguarding measures are maintained throughout the engagement.</li>
-                                <li>Providing adequate supervision and workspace for the contractor.</li>
-                                <li>Verifying the completeness of digital records before authorising destruction of paper records.</li>
-                            </ul>
-                        </div>
-
-                        <div class="disclaimer-signatures">
-                            <div class="signature-block">
-                                <p><strong>Archiving Manager Authorisation</strong></p>
-                                <p>Name: __________________________</p>
-                                <p>Position: _______________________</p>
-                                <p>Signature: ______________________</p>
-                                <p>Date: __________________________</p>
-                                <p class="signature-note">I confirm that I am the designated Archiving Manager and authorise the digitisation and subsequent destruction of records as outlined in this agreement.</p>
-                            </div>
-
-                            <div class="signature-block">
-                                <p><strong>Home Manager Authorisation</strong></p>
-                                <p>Name: __________________________</p>
-                                <p>Position: _______________________</p>
-                                <p>Signature: ______________________</p>
-                                <p>Date: __________________________</p>
-                                <p class="signature-note">I confirm that appropriate supervision and safeguarding arrangements are in place and that this engagement has been approved by senior management.</p>
-                            </div>
-                        </div>
-
-                        <div class="disclaimer-footer">
-                            <p><strong>LEGAL NOTICE:</strong> This disclaimer forms an integral part of the Risk Assessment & Data Handling Agreement. Both the Archiving Manager and Home Manager must sign this disclaimer before work commences. The Care Home retains ultimate responsibility for all decisions regarding records management, retention, and destruction.</p>
-                        </div>
-                    </div>
-                </div>
+                
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Authorized Personnel Only</p>
             </div>
         </div>
     </div>
-
-    <script src="script.js"></script>
+    
+    <script src="login.js"></script>
 </body>
 </html>
