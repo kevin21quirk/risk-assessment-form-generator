@@ -304,6 +304,26 @@ body {
     font-weight: bold;
 }
 
+.gdpr-footer {
+    background: #e9ecef;
+    border: 2px solid #495057;
+    padding: 20px;
+    margin-top: 30px;
+    text-align: center;
+    page-break-inside: avoid;
+}
+
+.gdpr-footer p {
+    margin: 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.gdpr-footer strong {
+    color: #000;
+    font-size: 1.05em;
+}
+
 .editable-title,
 .editable-subtitle,
 .editable-heading,
