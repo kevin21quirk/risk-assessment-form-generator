@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const addSectionBtn = document.getElementById('addSectionBtn');
     const saveTemplateBtn = document.getElementById('saveTemplateBtn');
     const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+    const switchToCertBtn = document.getElementById('switchToCertBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const formContent = document.getElementById('formContent');
 
@@ -17,9 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
     addSectionBtn.addEventListener('click', addCustomSection);
     saveTemplateBtn.addEventListener('click', saveAsTemplate);
     downloadPdfBtn.addEventListener('click', downloadPDF);
+    switchToCertBtn.addEventListener('click', switchToCertificate);
     logoutBtn.addEventListener('click', logout);
 
     loadTemplates();
+
+    function switchToCertificate() {
+        window.location.href = 'certificate.html';
+    }
 
     function logout() {
         if (confirm('Are you sure you want to logout?')) {

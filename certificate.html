@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Confidential Destruction - Abbey Healthcare</title>
+    <link rel="stylesheet" href="certificate.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="app-header">
+            <h1>Certificate of Confidential Destruction</h1>
+            <p class="subtitle">Abbey Healthcare - Secure Records Management</p>
+        </div>
+
+        <div class="controls">
+            <button id="editModeBtn" class="btn btn-primary">Enable Edit Mode</button>
+            <button id="saveTemplateBtn" class="btn btn-secondary">Save as Template</button>
+            <button id="downloadPdfBtn" class="btn btn-success">Download PDF</button>
+            <button id="switchToRiskBtn" class="btn btn-info">Risk Assessment Form</button>
+            <button id="logoutBtn" class="btn btn-danger">Logout</button>
+        </div>
+
+        <div id="templatesSection" class="templates-section" style="display: none;">
+            <h3>📁 Saved Templates</h3>
+            <div id="templatesList" class="templates-list"></div>
+        </div>
+
+        <div id="certificateContent" class="certificate-content">
+            <div class="document-header">
+                <h2 class="editable-title" contenteditable="false">CERTIFICATE OF CONFIDENTIAL DESTRUCTION</h2>
+                <h3 class="editable-subtitle" contenteditable="false">Secure Disposal of Confidential Records</h3>
+            </div>
+
+            <div class="section issued-section">
+                <div class="issued-by">
+                    <p><strong>Issued By:</strong></p>
+                    <p class="editable-content" contenteditable="false">Kevin Quirk (Independent Contractor)</p>
+                </div>
+
+                <div class="issued-to">
+                    <p><strong>Issued To:</strong></p>
+                    <div class="editable-content" contenteditable="false">
+                        <p>Applecroft Care Home</p>
+                        <p>Sanctuary Close</p>
+                        <p>River</p>
+                        <p>Dover</p>
+                        <p>Kent</p>
+                        <p>CT17 0ER</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section reference-section">
+                <p><strong>Certificate Reference No:</strong> <span id="certRefNo" class="editable-inline" contenteditable="false">ACCH-KQ-2026-001</span></p>
+                <p><strong>Date of Destruction:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                <p><strong>Location of Destruction:</strong> <span class="editable-inline" contenteditable="false">Applecroft Care Home (On Site)</span></p>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">1. Description of Records Destroyed</h3>
+                <p class="editable-content" contenteditable="false">This certificate confirms the secure destruction of the following confidential records:</p>
+                
+                <p><strong>Description of records:</strong></p>
+                <div class="editable-content text-area" contenteditable="false">
+                    <p>_________________________________________________________________</p>
+                    <p>_________________________________________________________________</p>
+                    <p>_________________________________________________________________</p>
+                </div>
+
+                <p><strong>Number of files / boxes (if applicable):</strong> <span class="editable-inline" contenteditable="false">__________________</span></p>
+                <p><strong>Date(s) digitised prior to destruction:</strong> <span class="editable-inline" contenteditable="false">___________________</span></p>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">2. Method of Destruction</h3>
+                <p class="editable-content" contenteditable="false">The above records were destroyed using the following method:</p>
+                
+                <div class="checkbox-group editable-content" contenteditable="false">
+                    <p>☐ Cross-cut shredding (on site)</p>
+                    <p>☐ Micro-cut shredding (on site)</p>
+                    <p>☐ Other (specify): _______________________________</p>
+                </div>
+
+                <p class="editable-content" contenteditable="false">Destruction was carried out in a manner that renders the information permanently unreadable and irretrievable.</p>
+                <p class="editable-content" contenteditable="false">All shredding was completed within the premises of Applecroft Care Home unless otherwise agreed in writing.</p>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">3. Compliance Statement</h3>
+                <p class="editable-content" contenteditable="false">I hereby certify that:</p>
+                
+                <ul class="editable-content" contenteditable="false">
+                    <li>The records listed above were digitised and verified prior to destruction.</li>
+                    <li>Written authorisation for destruction was obtained from authorised Care Home Management.</li>
+                    <li>The destruction process was carried out securely and in accordance with UK GDPR and the Data Protection Act 2018.</li>
+                    <li>The information contained within the records is no longer accessible or recoverable.</li>
+                    <li>This certificate is issued in good faith as confirmation of secure and complete destruction.</li>
+                </ul>
+            </div>
+
+            <div class="section signatures-section">
+                <h3 class="editable-heading" contenteditable="false">4. Authorisation</h3>
+                
+                <div class="signature-blocks">
+                    <div class="signature-block">
+                        <p><strong>Destroyed By:</strong></p>
+                        <p class="editable-content" contenteditable="false">Kevin Quirk</p>
+                        <p><strong>Signature:</strong> <span class="editable-inline" contenteditable="false">___________________________</span></p>
+                        <p><strong>Date:</strong> <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    </div>
+
+                    <div class="signature-block">
+                        <p><strong>Authorised By (Care Home Representative):</strong></p>
+                        <p><strong>Name:</strong> <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p><strong>Position:</strong> <span class="editable-inline" contenteditable="false">____________________________</span></p>
+                        <p><strong>Signature:</strong> <span class="editable-inline" contenteditable="false">___________________________</span></p>
+                        <p><strong>Date:</strong> <span class="editable-inline" contenteditable="false">________________________________</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="certificate.js"></script>
+</body>
+</html>
