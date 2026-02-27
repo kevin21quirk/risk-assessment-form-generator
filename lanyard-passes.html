@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanyard Passes - Abbey Healthcare</title>
+    <link rel="stylesheet" href="lanyard-passes.css">
+</head>
+<body>
+    <div class="container">
+        <div class="app-header no-print">
+            <h1>Lanyard Pass Generator</h1>
+            <p class="subtitle">Abbey Healthcare - Contractor Identification Passes</p>
+        </div>
+
+        <div class="controls no-print">
+            <button id="editModeBtn" class="btn btn-primary">Enable Edit Mode</button>
+            <button id="addPassBtn" class="btn btn-secondary">Add Pass</button>
+            <button id="removePassBtn" class="btn btn-warning">Remove Pass</button>
+            <button id="printBtn" class="btn btn-success">Print Passes</button>
+            <button id="switchToRiskBtn" class="btn btn-info">Risk Assessment</button>
+            <button id="switchToCertBtn" class="btn btn-info">Certificate</button>
+            <button id="switchToCleaningBtn" class="btn btn-info">Cleaning Assessment</button>
+            <button id="logoutBtn" class="btn btn-danger">Logout</button>
+        </div>
+
+        <div class="instructions no-print">
+            <p><strong>Instructions:</strong> This page generates multiple lanyard passes on a single A4 sheet. Enable Edit Mode to customize the information, add or remove passes as needed, then print. The dashed lines indicate where to cut.</p>
+        </div>
+
+        <div id="passesContainer" class="passes-container">
+            <!-- Pass 1 -->
+            <div class="pass-wrapper">
+                <div class="pass">
+                    <div class="pass-header">
+                        <h2 class="editable-content" contenteditable="false">ABBEY HEALTHCARE</h2>
+                        <p class="pass-type editable-content" contenteditable="false">CONTRACTOR PASS</p>
+                    </div>
+                    
+                    <div class="pass-photo">
+                        <div class="photo-placeholder editable-content" contenteditable="false">PHOTO</div>
+                    </div>
+                    
+                    <div class="pass-info">
+                        <div class="info-row">
+                            <span class="label">Name:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Service:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Company:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid From:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid Until:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Care Home:</span>
+                            <span class="value editable-content" contenteditable="false">Applecroft Care Home</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pass-footer">
+                        <p class="editable-content" contenteditable="false">This pass must be worn visibly at all times</p>
+                        <p class="editable-content" contenteditable="false">Report to reception on arrival</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pass 2 -->
+            <div class="pass-wrapper">
+                <div class="pass">
+                    <div class="pass-header">
+                        <h2 class="editable-content" contenteditable="false">ABBEY HEALTHCARE</h2>
+                        <p class="pass-type editable-content" contenteditable="false">CONTRACTOR PASS</p>
+                    </div>
+                    
+                    <div class="pass-photo">
+                        <div class="photo-placeholder editable-content" contenteditable="false">PHOTO</div>
+                    </div>
+                    
+                    <div class="pass-info">
+                        <div class="info-row">
+                            <span class="label">Name:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Service:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Company:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid From:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid Until:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Care Home:</span>
+                            <span class="value editable-content" contenteditable="false">Applecroft Care Home</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pass-footer">
+                        <p class="editable-content" contenteditable="false">This pass must be worn visibly at all times</p>
+                        <p class="editable-content" contenteditable="false">Report to reception on arrival</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pass 3 -->
+            <div class="pass-wrapper">
+                <div class="pass">
+                    <div class="pass-header">
+                        <h2 class="editable-content" contenteditable="false">ABBEY HEALTHCARE</h2>
+                        <p class="pass-type editable-content" contenteditable="false">CONTRACTOR PASS</p>
+                    </div>
+                    
+                    <div class="pass-photo">
+                        <div class="photo-placeholder editable-content" contenteditable="false">PHOTO</div>
+                    </div>
+                    
+                    <div class="pass-info">
+                        <div class="info-row">
+                            <span class="label">Name:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Service:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Company:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid From:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid Until:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Care Home:</span>
+                            <span class="value editable-content" contenteditable="false">Applecroft Care Home</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pass-footer">
+                        <p class="editable-content" contenteditable="false">This pass must be worn visibly at all times</p>
+                        <p class="editable-content" contenteditable="false">Report to reception on arrival</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pass 4 -->
+            <div class="pass-wrapper">
+                <div class="pass">
+                    <div class="pass-header">
+                        <h2 class="editable-content" contenteditable="false">ABBEY HEALTHCARE</h2>
+                        <p class="pass-type editable-content" contenteditable="false">CONTRACTOR PASS</p>
+                    </div>
+                    
+                    <div class="pass-photo">
+                        <div class="photo-placeholder editable-content" contenteditable="false">PHOTO</div>
+                    </div>
+                    
+                    <div class="pass-info">
+                        <div class="info-row">
+                            <span class="label">Name:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Service:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Company:</span>
+                            <span class="value editable-content" contenteditable="false">_______________________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid From:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Valid Until:</span>
+                            <span class="value editable-content" contenteditable="false">___________</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Care Home:</span>
+                            <span class="value editable-content" contenteditable="false">Applecroft Care Home</span>
+                        </div>
+                    </div>
+                    
+                    <div class="pass-footer">
+                        <p class="editable-content" contenteditable="false">This pass must be worn visibly at all times</p>
+                        <p class="editable-content" contenteditable="false">Report to reception on arrival</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="lanyard-passes.js"></script>
+</body>
+</html>

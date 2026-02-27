@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadPdfBtn = document.getElementById('downloadPdfBtn');
     const switchToRiskBtn = document.getElementById('switchToRiskBtn');
     const switchToCleaningBtn = document.getElementById('switchToCleaningBtn');
+    const switchToLanyardBtn = document.getElementById('switchToLanyardBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const certificateContent = document.getElementById('certificateContent');
 
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     downloadPdfBtn.addEventListener('click', downloadPDF);
     switchToRiskBtn.addEventListener('click', switchToRiskAssessment);
     switchToCleaningBtn.addEventListener('click', () => window.location.href = 'cleaning-assessment.html');
+    switchToLanyardBtn.addEventListener('click', () => window.location.href = 'lanyard-passes.html');
     logoutBtn.addEventListener('click', logout);
 
     loadTemplates();
