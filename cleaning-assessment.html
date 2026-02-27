@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Contractor Safeguarding Assessment - Abbey Healthcare</title>
+    <link rel="stylesheet" href="cleaning-assessment.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="app-header">
+            <h1>Cleaning Contractor Safeguarding Assessment</h1>
+            <p class="subtitle">Abbey Healthcare - Contractor Vetting & Compliance</p>
+        </div>
+
+        <div class="controls">
+            <button id="editModeBtn" class="btn btn-primary">Enable Edit Mode</button>
+            <button id="saveTemplateBtn" class="btn btn-secondary">Save as Template</button>
+            <button id="downloadPdfBtn" class="btn btn-success">Download PDF</button>
+            <button id="switchToRiskBtn" class="btn btn-info">Risk Assessment</button>
+            <button id="switchToCertBtn" class="btn btn-info">Certificate</button>
+            <button id="logoutBtn" class="btn btn-danger">Logout</button>
+        </div>
+
+        <div id="templatesSection" class="templates-section" style="display: none;">
+            <h3>📁 Saved Templates</h3>
+            <div id="templatesList" class="templates-list"></div>
+        </div>
+
+        <div id="assessmentContent" class="assessment-content">
+            <div class="document-header">
+                <h2 class="editable-title" contenteditable="false">CLEANING CONTRACTOR SAFEGUARDING ASSESSMENT</h2>
+                <h3 class="editable-subtitle" contenteditable="false">Pre-Employment Safeguarding & Compliance Check</h3>
+            </div>
+
+            <div class="section care-home-section">
+                <h3 class="editable-heading" contenteditable="false">Care Home Details</h3>
+                <p><strong>Care Home Name:</strong> <span class="editable-inline" contenteditable="false">Applecroft Care Home</span></p>
+                <p><strong>Address:</strong></p>
+                <div class="editable-content" contenteditable="false">
+                    <p>Sanctuary Close, River, Dover, Kent, CT17 0ER</p>
+                </div>
+                <p><strong>Assessment Date:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+            </div>
+
+            <div class="section contractor-details">
+                <h3 class="editable-heading" contenteditable="false">Contractor Details</h3>
+                <div class="contractor-grid">
+                    <div>
+                        <p><strong>Contractor 1 Name:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Date of Birth:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Contact Number:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Email Address:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                    </div>
+                    <div>
+                        <p><strong>Contractor 2 Name:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Date of Birth:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Contact Number:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Email Address:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">1. Safeguarding & Resident Protection</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>Understanding of Vulnerable Adults:</strong></p>
+                    <p>Both contractors confirm they understand they will be working in a care home environment with vulnerable adults who may have cognitive impairments, physical disabilities, or other care needs requiring protection and safeguarding.</p>
+                    
+                    <p><strong>No Direct Resident Contact:</strong></p>
+                    <p>Contractors acknowledge that their role is strictly limited to cleaning duties and they must NOT engage in:</p>
+                    <ul>
+                        <li>Direct care or assistance to residents</li>
+                        <li>Personal conversations or interactions with residents beyond polite greetings</li>
+                        <li>Entering resident rooms when residents are present (unless supervised by care staff)</li>
+                        <li>Handling resident belongings, medications, or personal items</li>
+                        <li>Taking photographs or videos on the premises</li>
+                    </ul>
+
+                    <p><strong>Safeguarding Awareness:</strong></p>
+                    <p>Contractors confirm awareness of:</p>
+                    <ul>
+                        <li>Signs of abuse, neglect, or harm to vulnerable adults</li>
+                        <li>Duty to report any concerns immediately to the Home Manager</li>
+                        <li>Maintaining professional boundaries at all times</li>
+                        <li>Respecting resident privacy, dignity, and confidentiality</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">2. Health & Safety Compliance</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>Health Declaration:</strong></p>
+                    <p>Both contractors confirm they are in good health and free from any contagious illnesses that could pose a risk to vulnerable residents.</p>
+                    
+                    <p><strong>Infection Control:</strong></p>
+                    <ul>
+                        <li>Will follow all infection control procedures including hand hygiene</li>
+                        <li>Will use appropriate PPE (gloves, aprons) when required</li>
+                        <li>Will report any illness or symptoms before attending work</li>
+                        <li>Understand the importance of cleanliness in a care environment</li>
+                    </ul>
+
+                    <p><strong>Safe Working Practices:</strong></p>
+                    <ul>
+                        <li>Will use cleaning products and equipment safely</li>
+                        <li>Will place warning signs when floors are wet</li>
+                        <li>Will store chemicals and equipment securely</li>
+                        <li>Will report any hazards or safety concerns immediately</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">3. Confidentiality & Data Protection</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>Confidentiality Agreement:</strong></p>
+                    <p>Contractors acknowledge that they may inadvertently see or hear confidential information about residents, their families, or care home operations. They agree to:</p>
+                    <ul>
+                        <li>Maintain strict confidentiality of all information</li>
+                        <li>Not discuss residents, staff, or care home matters outside the premises</li>
+                        <li>Not share any information on social media or with third parties</li>
+                        <li>Comply with UK GDPR and Data Protection Act 2018</li>
+                        <li>Report any data breaches or confidentiality concerns immediately</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">4. Professional Conduct & Behavior</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>Code of Conduct:</strong></p>
+                    <p>Both contractors agree to:</p>
+                    <ul>
+                        <li>Behave professionally and respectfully at all times</li>
+                        <li>Follow all care home policies and procedures</li>
+                        <li>Take direction from the Home Manager or designated supervisor</li>
+                        <li>Arrive punctually and work diligently</li>
+                        <li>Dress appropriately for cleaning duties</li>
+                        <li>Not be under the influence of alcohol or drugs while working</li>
+                        <li>Not bring unauthorized visitors to the premises</li>
+                    </ul>
+
+                    <p><strong>Reporting Obligations:</strong></p>
+                    <p>Contractors must immediately report:</p>
+                    <ul>
+                        <li>Any safeguarding concerns or suspicions of abuse</li>
+                        <li>Accidents, incidents, or near misses</li>
+                        <li>Damage to property or equipment</li>
+                        <li>Any concerns about resident welfare or safety</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">5. Supervision & Monitoring</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>Supervision Arrangements:</strong></p>
+                    <p>Contractors acknowledge that:</p>
+                    <ul>
+                        <li>They will work under the supervision of the Home Manager or designated staff</li>
+                        <li>Their work will be monitored and quality-checked regularly</li>
+                        <li>They must report to the supervisor at the start and end of each shift</li>
+                        <li>They must seek guidance if unsure about any aspect of their duties</li>
+                    </ul>
+
+                    <p><strong>Access & Movement:</strong></p>
+                    <ul>
+                        <li>Contractors will only access areas designated for cleaning</li>
+                        <li>Must sign in/out using the visitor log</li>
+                        <li>Must wear identification badges while on premises</li>
+                        <li>Must not access locked areas, offices, or medication storage without authorization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">6. Right to Work & Identity Verification</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>Identity Documents Verified:</strong></p>
+                    <p>☐ Contractor 1: Photo ID verified (Passport / Driving Licence)</p>
+                    <p>☐ Contractor 2: Photo ID verified (Passport / Driving Licence)</p>
+                    
+                    <p><strong>Right to Work in the UK:</strong></p>
+                    <p>☐ Contractor 1: Right to work documentation verified</p>
+                    <p>☐ Contractor 2: Right to work documentation verified</p>
+                    
+                    <p><strong>Proof of Address:</strong></p>
+                    <p>☐ Contractor 1: Proof of address verified (dated within 3 months)</p>
+                    <p>☐ Contractor 2: Proof of address verified (dated within 3 months)</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">7. References & Previous Employment</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>Contractor 1 - References:</strong></p>
+                    <p>Reference 1: <span class="editable-inline" contenteditable="false">_____________________________________________________________</span></p>
+                    <p>Reference 2: <span class="editable-inline" contenteditable="false">_____________________________________________________________</span></p>
+                    
+                    <p><strong>Contractor 2 - References:</strong></p>
+                    <p>Reference 1: <span class="editable-inline" contenteditable="false">_____________________________________________________________</span></p>
+                    <p>Reference 2: <span class="editable-inline" contenteditable="false">_____________________________________________________________</span></p>
+                    
+                    <p><strong>Previous Experience in Care Settings:</strong></p>
+                    <p class="editable-content" contenteditable="false">_________________________________________________________________</p>
+                </div>
+            </div>
+
+            <div class="section declaration-section">
+                <h3 class="editable-heading" contenteditable="false">8. Contractor Declaration</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>We, the undersigned contractors, declare that:</strong></p>
+                    <ul>
+                        <li>All information provided in this assessment is true and accurate</li>
+                        <li>We have read and understood all sections of this safeguarding assessment</li>
+                        <li>We agree to comply with all safeguarding, health & safety, and confidentiality requirements</li>
+                        <li>We understand our role is limited to cleaning duties with no direct resident care</li>
+                        <li>We will report any concerns or incidents immediately to the Home Manager</li>
+                        <li>We understand that breach of these requirements may result in immediate termination</li>
+                    </ul>
+                </div>
+
+                <div class="signature-blocks">
+                    <div class="signature-block">
+                        <p><strong>Contractor 1 Signature:</strong></p>
+                        <p>Name: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Signature: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Date: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    </div>
+
+                    <div class="signature-block">
+                        <p><strong>Contractor 2 Signature:</strong></p>
+                        <p>Name: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Signature: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Date: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section manager-approval">
+                <h3 class="editable-heading" contenteditable="false">9. Home Manager Approval & Sign-Off</h3>
+                <div class="editable-content" contenteditable="false">
+                    <p><strong>I confirm that:</strong></p>
+                    <ul>
+                        <li>I have reviewed this safeguarding assessment with both contractors</li>
+                        <li>Identity and right to work documents have been verified</li>
+                        <li>References have been checked (where applicable)</li>
+                        <li>Both contractors understand their safeguarding responsibilities</li>
+                        <li>Appropriate supervision arrangements are in place</li>
+                        <li>I am satisfied that both contractors are suitable to work in this care home environment</li>
+                    </ul>
+                </div>
+
+                <div class="manager-signature">
+                    <p><strong>Home Manager Name:</strong> <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    <p><strong>Position/Title:</strong> <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    <p><strong>Signature:</strong> <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    <p><strong>Date:</strong> <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    <p><strong>Care Home Stamp:</strong></p>
+                    <div class="stamp-box editable-content" contenteditable="false">
+                        <p style="text-align: center; padding: 20px;">[Official Care Home Stamp]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section compliance-footer">
+                <p class="editable-content" contenteditable="false"><strong>Compliance Statement:</strong> This safeguarding assessment has been completed in accordance with the Care Quality Commission (CQC) regulations, safeguarding vulnerable adults guidelines, UK GDPR, and the Data Protection Act 2018. This document must be retained securely and reviewed annually or when circumstances change.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="cleaning-assessment.js"></script>
+</body>
+</html>

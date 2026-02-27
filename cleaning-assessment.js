@@ -9,19 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveTemplateBtn = document.getElementById('saveTemplateBtn');
     const downloadPdfBtn = document.getElementById('downloadPdfBtn');
     const switchToRiskBtn = document.getElementById('switchToRiskBtn');
-    const switchToCleaningBtn = document.getElementById('switchToCleaningBtn');
+    const switchToCertBtn = document.getElementById('switchToCertBtn');
     const logoutBtn = document.getElementById('logoutBtn');
-    const certificateContent = document.getElementById('certificateContent');
+    const assessmentContent = document.getElementById('assessmentContent');
 
     editModeBtn.addEventListener('click', toggleEditMode);
     saveTemplateBtn.addEventListener('click', saveAsTemplate);
     downloadPdfBtn.addEventListener('click', downloadPDF);
-    switchToRiskBtn.addEventListener('click', switchToRiskAssessment);
-    switchToCleaningBtn.addEventListener('click', () => window.location.href = 'cleaning-assessment.html');
+    switchToRiskBtn.addEventListener('click', () => window.location.href = 'app.html');
+    switchToCertBtn.addEventListener('click', () => window.location.href = 'certificate.html');
     logoutBtn.addEventListener('click', logout);
 
     loadTemplates();
-    generateCertificateNumber();
 
     function logout() {
         if (confirm('Are you sure you want to logout?')) {
@@ -31,59 +30,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function switchToRiskAssessment() {
-        window.location.href = 'app.html';
-    }
-
-    function generateCertificateNumber() {
-        const currentYear = new Date().getFullYear();
-        let certCounter = localStorage.getItem('certCounter_' + currentYear);
-        
-        if (!certCounter) {
-            certCounter = 1;
-        } else {
-            certCounter = parseInt(certCounter);
-        }
-        
-        const sequentialNumber = String(certCounter).padStart(3, '0');
-        const certRefNo = `ACCH-KQ-${currentYear}-${sequentialNumber}`;
-        
-        document.getElementById('certRefNo').textContent = certRefNo;
-    }
-
-    function incrementCertificateCounter() {
-        const currentYear = new Date().getFullYear();
-        let certCounter = localStorage.getItem('certCounter_' + currentYear);
-        
-        if (!certCounter) {
-            certCounter = 1;
-        } else {
-            certCounter = parseInt(certCounter) + 1;
-        }
-        
-        localStorage.setItem('certCounter_' + currentYear, certCounter);
-    }
-
     function toggleEditMode() {
         editMode = !editMode;
         
         if (editMode) {
-            certificateContent.classList.add('edit-mode');
+            assessmentContent.classList.add('edit-mode');
             editModeBtn.textContent = 'Disable Edit Mode';
             editModeBtn.classList.remove('btn-primary');
             editModeBtn.classList.add('btn-secondary');
             
-            const editableElements = certificateContent.querySelectorAll('.editable-title, .editable-subtitle, .editable-heading, .editable-content, .editable-inline');
+            const editableElements = assessmentContent.querySelectorAll('.editable-title, .editable-subtitle, .editable-heading, .editable-content, .editable-inline');
             editableElements.forEach(element => {
                 element.setAttribute('contenteditable', 'true');
             });
         } else {
-            certificateContent.classList.remove('edit-mode');
+            assessmentContent.classList.remove('edit-mode');
             editModeBtn.textContent = 'Enable Edit Mode';
             editModeBtn.classList.remove('btn-secondary');
             editModeBtn.classList.add('btn-primary');
             
-            const editableElements = certificateContent.querySelectorAll('.editable-title, .editable-subtitle, .editable-heading, .editable-content, .editable-inline');
+            const editableElements = assessmentContent.querySelectorAll('.editable-title, .editable-subtitle, .editable-heading, .editable-content, .editable-inline');
             editableElements.forEach(element => {
                 element.setAttribute('contenteditable', 'false');
             });
@@ -91,27 +57,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function saveAsTemplate() {
-        const issuedToElement = certificateContent.querySelector('.issued-to .editable-content');
-        let templateName = 'Certificate Template';
+        const careHomeElement = assessmentContent.querySelector('.care-home-section .editable-inline');
+        let templateName = 'Cleaning Assessment Template';
         
-        if (issuedToElement) {
-            const firstLine = issuedToElement.querySelector('p');
-            if (firstLine && firstLine.textContent.trim()) {
-                templateName = firstLine.textContent.trim();
-            }
+        if (careHomeElement && careHomeElement.textContent.trim()) {
+            templateName = careHomeElement.textContent.trim();
         }
 
-        const certificateHTML = certificateContent.innerHTML;
+        const assessmentHTML = assessmentContent.innerHTML;
         
-        let templates = localStorage.getItem('certificateTemplates');
+        let templates = localStorage.getItem('cleaningAssessmentTemplates');
         templates = templates ? JSON.parse(templates) : {};
         
         templates[templateName] = {
-            html: certificateHTML,
+            html: assessmentHTML,
             date: new Date().toLocaleDateString()
         };
         
-        localStorage.setItem('certificateTemplates', JSON.stringify(templates));
+        localStorage.setItem('cleaningAssessmentTemplates', JSON.stringify(templates));
         
         alert(`Template "${templateName}" saved successfully!`);
         loadTemplates();
@@ -121,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const templatesSection = document.getElementById('templatesSection');
         const templatesList = document.getElementById('templatesList');
         
-        let templates = localStorage.getItem('certificateTemplates');
+        let templates = localStorage.getItem('cleaningAssessmentTemplates');
         templates = templates ? JSON.parse(templates) : {};
         
         if (Object.keys(templates).length === 0) {
@@ -136,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const card = document.createElement('div');
             card.className = 'template-card';
             card.innerHTML = `
-                <div class="template-card-icon">📄</div>
+                <div class="template-card-icon">🧹</div>
                 <div class="template-card-name">${name}</div>
                 <div class="template-card-date">${data.date}</div>
                 <button class="template-card-delete" onclick="deleteTemplate('${name}')">×</button>
@@ -154,31 +117,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.deleteTemplate = function(templateName) {
         if (confirm(`Are you sure you want to delete the template "${templateName}"?`)) {
-            let templates = localStorage.getItem('certificateTemplates');
+            let templates = localStorage.getItem('cleaningAssessmentTemplates');
             templates = JSON.parse(templates);
             delete templates[templateName];
-            localStorage.setItem('certificateTemplates', JSON.stringify(templates));
+            localStorage.setItem('cleaningAssessmentTemplates', JSON.stringify(templates));
             loadTemplates();
         }
     };
 
     function applyTemplate(templateName) {
-        let templates = localStorage.getItem('certificateTemplates');
+        let templates = localStorage.getItem('cleaningAssessmentTemplates');
         templates = JSON.parse(templates);
         
         if (templates[templateName]) {
-            certificateContent.innerHTML = templates[templateName].html;
-            generateCertificateNumber();
+            assessmentContent.innerHTML = templates[templateName].html;
             alert(`Template "${templateName}" loaded successfully!`);
         }
     }
 
     function downloadPDF() {
         const currentDate = new Date().toISOString().split('T')[0];
-        const certRefNo = document.getElementById('certRefNo').textContent;
-        const filename = `Certificate_of_Destruction_${certRefNo}_${currentDate}.pdf`;
+        const filename = `Cleaning_Contractor_Safeguarding_Assessment_${currentDate}.pdf`;
         
-        const element = certificateContent;
+        const element = assessmentContent;
         
         const opt = {
             margin: [10, 10, 10, 10],
@@ -197,11 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
         };
         
-        html2pdf().set(opt).from(element).save().then(() => {
-            incrementCertificateCounter();
-            setTimeout(() => {
-                generateCertificateNumber();
-            }, 500);
-        });
+        html2pdf().set(opt).from(element).save();
     }
 });

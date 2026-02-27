@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveTemplateBtn = document.getElementById('saveTemplateBtn');
     const downloadPdfBtn = document.getElementById('downloadPdfBtn');
     const switchToCertBtn = document.getElementById('switchToCertBtn');
+    const switchToCleaningBtn = document.getElementById('switchToCleaningBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const formContent = document.getElementById('formContent');
 
@@ -19,12 +20,17 @@ document.addEventListener('DOMContentLoaded', function() {
     saveTemplateBtn.addEventListener('click', saveAsTemplate);
     downloadPdfBtn.addEventListener('click', downloadPDF);
     switchToCertBtn.addEventListener('click', switchToCertificate);
+    switchToCleaningBtn.addEventListener('click', switchToCleaningAssessment);
     logoutBtn.addEventListener('click', logout);
 
     loadTemplates();
 
     function switchToCertificate() {
         window.location.href = 'certificate.html';
+    }
+
+    function switchToCleaningAssessment() {
+        window.location.href = 'cleaning-assessment.html';
     }
 
     function logout() {
