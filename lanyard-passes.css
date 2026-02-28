@@ -265,8 +265,8 @@ body {
 
 @media print {
     @page {
-        size: A4;
-        margin: 10mm;
+        size: A4 portrait;
+        margin: 5mm;
     }
 
     body {
@@ -279,6 +279,7 @@ body {
         box-shadow: none;
         border-radius: 0;
         max-width: 100%;
+        width: 100%;
     }
 
     .no-print {
@@ -286,21 +287,67 @@ body {
     }
 
     .passes-container {
-        padding: 0;
-        gap: 0;
-        grid-template-columns: repeat(2, 1fr);
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+        gap: 3mm !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100%;
+        height: 277mm;
     }
 
     .pass-wrapper {
         border: 2px dashed #999;
-        padding: 5mm;
+        padding: 3mm;
         page-break-inside: avoid;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .pass {
         box-shadow: none;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        width: 100%;
+        height: 100%;
+        max-height: 130mm;
+        font-size: 0.85em;
+    }
+
+    .pass-header h2 {
+        font-size: 1.1em;
+        margin-bottom: 3px;
+    }
+
+    .pass-type {
+        font-size: 0.75em;
+        padding: 3px 10px;
+    }
+
+    .photo-placeholder,
+    .photo-image {
+        width: 80px;
+        height: 100px;
+    }
+
+    .pass-info {
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    .info-row {
+        font-size: 0.75em;
+        margin-bottom: 5px;
+    }
+
+    .pass-footer p {
+        font-size: 0.65em;
+        margin: 2px 0;
     }
 
     .edit-mode .editable-content {
