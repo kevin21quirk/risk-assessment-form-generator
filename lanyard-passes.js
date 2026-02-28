@@ -24,6 +24,43 @@ document.addEventListener('DOMContentLoaded', function() {
     switchToCleaningBtn.addEventListener('click', () => window.location.href = 'cleaning-assessment.html');
     logoutBtn.addEventListener('click', logout);
 
+    initializePhotoUploads();
+
+    function initializePhotoUploads() {
+        const photoSections = document.querySelectorAll('.pass-photo');
+        
+        photoSections.forEach(photoSection => {
+            const fileInput = photoSection.querySelector('.photo-upload');
+            const photoImage = photoSection.querySelector('.photo-image');
+            const placeholder = photoSection.querySelector('.photo-placeholder');
+            
+            // Click on placeholder or image to trigger file input
+            placeholder.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            photoImage.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            // Handle file selection
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        photoImage.src = event.target.result;
+                        photoImage.style.display = 'inline-block';
+                        placeholder.style.display = 'none';
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    }
+
     function logout() {
         if (confirm('Are you sure you want to logout?')) {
             sessionStorage.removeItem('authenticated');
@@ -59,6 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addPass() {
+        const currentPasses = passesContainer.querySelectorAll('.pass-wrapper').length;
+        
+        if (currentPasses >= 4) {
+            alert('Maximum of 4 passes per A4 sheet. Please print this page and create a new set if you need more passes.');
+            return;
+        }
+        
         const newPass = document.createElement('div');
         newPass.className = 'pass-wrapper';
         newPass.innerHTML = `
@@ -69,7 +113,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 
                 <div class="pass-photo">
-                    <div class="photo-placeholder editable-content" contenteditable="${editMode}">PHOTO</div>
+                    <input type="file" class="photo-upload no-print" accept="image/*" style="display: none;">
+                    <img class="photo-image" style="display: none;">
+                    <div class="photo-placeholder">PHOTO<br><small class="no-print" style="font-size: 0.7em;">Click to upload</small></div>
                 </div>
                 
                 <div class="pass-info">
@@ -106,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         passesContainer.appendChild(newPass);
+        initializePhotoUploads();
     }
 
     function removePass() {

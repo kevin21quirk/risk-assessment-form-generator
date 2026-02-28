@@ -179,6 +179,7 @@ body {
 .pass-photo {
     text-align: center;
     margin: 15px 0;
+    position: relative;
 }
 
 .photo-placeholder {
@@ -192,6 +193,21 @@ body {
     font-weight: bold;
     color: #666;
     font-size: 1.2em;
+    cursor: pointer;
+    flex-direction: column;
+    transition: background-color 0.3s;
+}
+
+.photo-placeholder:hover {
+    background-color: #f0f0f0;
+}
+
+.photo-image {
+    width: 100px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid #000;
+    cursor: pointer;
 }
 
 .pass-info {
