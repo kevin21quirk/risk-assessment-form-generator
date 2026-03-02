@@ -341,34 +341,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function downloadPDF() {
-        const currentDate = new Date().toISOString().split('T')[0];
-        const filename = `Audit_Trail_${currentDate}.pdf`;
-        
-        const element = auditContent;
-        
-        const opt = {
-            margin: [8, 8, 8, 8],
-            filename: filename,
-            image: { type: 'jpeg', quality: 0.95 },
-            html2canvas: { 
-                scale: 1.5,
-                useCORS: true,
-                letterRendering: true,
-                scrollY: 0,
-                scrollX: 0,
-                windowWidth: 1400,
-                width: 1400
-            },
-            jsPDF: { 
-                unit: 'mm', 
-                format: 'a4', 
-                orientation: 'portrait',
-                compress: true
-            },
-            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-        };
-        
-        html2pdf().set(opt).from(element).save();
+        // Use native browser print dialog for better PDF generation
+        window.print();
     }
 
     function saveAuditData() {

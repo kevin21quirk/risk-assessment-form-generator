@@ -529,32 +529,34 @@ body {
         print-color-adjust: exact;
     }
 
-    .audit-table input[type="text"] {
-        border: none;
-        background: transparent;
-        font-size: 7px;
-        padding: 0;
-        width: 100%;
-        display: block;
-    }
-
+    .audit-table input[type="text"],
     .audit-table select {
-        border: none;
-        background: transparent;
-        font-size: 7px;
-        padding: 0;
-        width: 100%;
-        -webkit-appearance: none;
-        appearance: none;
+        border: none !important;
+        background: transparent !important;
+        font-size: 8px !important;
+        padding: 2px !important;
+        width: 100% !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+        color: #000 !important;
+        font-family: 'Times New Roman', Times, serif !important;
     }
 
     .audit-table input[type="checkbox"] {
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     .audit-table button {
-        display: none;
+        display: none !important;
+    }
+
+    .audit-table select option {
+        color: #000 !important;
     }
 
     .summary-grid {
