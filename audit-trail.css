@@ -477,6 +477,10 @@ body {
         max-width: 100%;
     }
 
+    .audit-content {
+        padding: 20px;
+    }
+
     .no-print {
         display: none !important;
     }
@@ -492,63 +496,125 @@ body {
 
     .section {
         page-break-inside: avoid;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     .table-responsive {
         overflow: visible;
+        width: 100%;
     }
 
     .audit-table {
         width: 100%;
-        font-size: 9px;
+        font-size: 7px;
         border-collapse: collapse;
-        table-layout: fixed;
+        table-layout: auto;
     }
 
     .audit-table th,
     .audit-table td {
-        padding: 6px 4px;
-        border: 1px solid #000;
+        padding: 4px 3px;
+        border: 1px solid #333;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        vertical-align: top;
     }
 
     .audit-table th {
         background-color: #343a40 !important;
         color: white !important;
         font-weight: bold;
+        font-size: 7px;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
-    .audit-table input,
-    .audit-table select,
-    .audit-table button {
+    .audit-table input[type="text"] {
         border: none;
         background: transparent;
-        font-size: 9px;
+        font-size: 7px;
         padding: 0;
+        width: 100%;
+        display: block;
+    }
+
+    .audit-table select {
+        border: none;
+        background: transparent;
+        font-size: 7px;
+        padding: 0;
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .audit-table input[type="checkbox"] {
+        width: 12px;
+        height: 12px;
+    }
+
+    .audit-table button {
+        display: none;
     }
 
     .summary-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        gap: 8px;
+    }
+
+    .summary-card {
+        padding: 10px;
+    }
+
+    .summary-label {
+        font-size: 8px;
+    }
+
+    .summary-value {
+        font-size: 16px;
     }
 
     .breakdown-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        gap: 8px;
     }
 
     .breakdown-header {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        padding: 8px;
+        font-size: 9px;
+    }
+
+    .breakdown-content {
+        padding: 10px;
+        font-size: 8px;
     }
 
     .signature-blocks {
         grid-template-columns: 1fr 1fr;
-        gap: 20px;
+        gap: 15px;
+    }
+
+    .signature-block {
+        padding: 12px;
+        font-size: 9px;
+    }
+
+    .audit-header-grid {
+        font-size: 9px;
+    }
+
+    .document-header h2 {
+        font-size: 16px;
+    }
+
+    .document-header h3 {
+        font-size: 12px;
+    }
+
+    .section h3 {
+        font-size: 11px;
     }
 }
 
