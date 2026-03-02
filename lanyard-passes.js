@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     switchToRiskBtn.addEventListener('click', () => window.location.href = 'app.html');
     switchToCertBtn.addEventListener('click', () => window.location.href = 'certificate.html');
     switchToCleaningBtn.addEventListener('click', () => window.location.href = 'cleaning-assessment.html');
+    const switchToAuditBtn = document.getElementById('switchToAuditBtn');
+    switchToAuditBtn.addEventListener('click', () => window.location.href = 'audit-trail.html');
     logoutBtn.addEventListener('click', logout);
 
     initializePhotoUploads();

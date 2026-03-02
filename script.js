@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const switchToCertBtn = document.getElementById('switchToCertBtn');
     const switchToCleaningBtn = document.getElementById('switchToCleaningBtn');
     const switchToLanyardBtn = document.getElementById('switchToLanyardBtn');
+    const switchToAuditBtn = document.getElementById('switchToAuditBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const formContent = document.getElementById('formContent');
 
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     switchToCertBtn.addEventListener('click', switchToCertificate);
     switchToCleaningBtn.addEventListener('click', switchToCleaningAssessment);
     switchToLanyardBtn.addEventListener('click', () => window.location.href = 'lanyard-passes.html');
+    switchToAuditBtn.addEventListener('click', () => window.location.href = 'audit-trail.html');
     logoutBtn.addEventListener('click', logout);
 
     loadTemplates();

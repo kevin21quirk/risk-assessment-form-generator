@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Trail - Abbey Healthcare</title>
+    <link rel="stylesheet" href="audit-trail.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="app-header no-print">
+            <h1>Document Audit Trail</h1>
+            <p class="subtitle">Abbey Healthcare - Scanning & Shredding Log</p>
+        </div>
+
+        <div class="controls no-print">
+            <button id="editModeBtn" class="btn btn-primary">Enable Edit Mode</button>
+            <button id="addBoxBtn" class="btn btn-secondary">Add Box Entry</button>
+            <button id="saveTemplateBtn" class="btn btn-info">Save as Template</button>
+            <button id="downloadPdfBtn" class="btn btn-success">Download PDF</button>
+            <button id="switchToRiskBtn" class="btn btn-info">Risk Assessment</button>
+            <button id="switchToCertBtn" class="btn btn-info">Certificate</button>
+            <button id="switchToCleaningBtn" class="btn btn-info">Cleaning</button>
+            <button id="switchToLanyardBtn" class="btn btn-info">Lanyard</button>
+            <button id="logoutBtn" class="btn btn-danger">Logout</button>
+        </div>
+
+        <div id="templatesSection" class="templates-section no-print" style="display: none;">
+            <h3>📁 Saved Templates</h3>
+            <div id="templatesList" class="templates-list"></div>
+        </div>
+
+        <div id="auditContent" class="audit-content">
+            <div class="document-header">
+                <h2 class="editable-title" contenteditable="false">DOCUMENT AUDIT TRAIL</h2>
+                <h3 class="editable-subtitle" contenteditable="false">Scanning & Shredding Activity Log</h3>
+            </div>
+
+            <div class="section header-section">
+                <h3 class="editable-heading" contenteditable="false">Audit Information</h3>
+                <div class="audit-header-grid">
+                    <div>
+                        <p><strong>Care Home:</strong> <span class="editable-inline" contenteditable="false">Applecroft Care Home</span></p>
+                        <p><strong>Address:</strong> <span class="editable-inline" contenteditable="false">Sanctuary Close, River, Dover, Kent, CT17 0ER</span></p>
+                    </div>
+                    <div>
+                        <p><strong>Audit Date:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Auditor Name:</strong> <span class="editable-inline" contenteditable="false">_____________________________</span></p>
+                        <p><strong>Reference No:</strong> <span class="editable-inline" contenteditable="false">ACCH-AUDIT-<span id="auditRefNumber"></span></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section summary-section">
+                <h3 class="editable-heading" contenteditable="false">Activity Summary</h3>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-label">Total Boxes Processed</div>
+                        <div class="summary-value" id="totalBoxes">0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Boxes Scanned</div>
+                        <div class="summary-value" id="totalScanned">0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Boxes Shredded</div>
+                        <div class="summary-value" id="totalShredded">0</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">Boxes Scanned & Shredded</div>
+                        <div class="summary-value" id="totalBoth">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="editable-heading" contenteditable="false">Box-by-Box Audit Log</h3>
+                <div class="table-responsive">
+                    <table class="audit-table" id="auditTable">
+                        <thead>
+                            <tr>
+                                <th>Box #</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Date Range</th>
+                                <th>Scanned</th>
+                                <th>Shredded</th>
+                                <th>Notes</th>
+                                <th class="no-print">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="auditTableBody">
+                            <!-- Rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section category-breakdown">
+                <h3 class="editable-heading" contenteditable="false">Category Breakdown</h3>
+                <div class="breakdown-grid">
+                    <div class="breakdown-card">
+                        <div class="breakdown-header hr-category">HR Records</div>
+                        <div class="breakdown-content">
+                            <p>Boxes: <strong id="hrCount">0</strong></p>
+                            <p>Scanned: <strong id="hrScanned">0</strong></p>
+                            <p>Shredded: <strong id="hrShredded">0</strong></p>
+                        </div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="breakdown-header residents-category">Resident Records</div>
+                        <div class="breakdown-content">
+                            <p>Boxes: <strong id="residentsCount">0</strong></p>
+                            <p>Scanned: <strong id="residentsScanned">0</strong></p>
+                            <p>Shredded: <strong id="residentsShredded">0</strong></p>
+                        </div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="breakdown-header admin-category">Admin Records</div>
+                        <div class="breakdown-content">
+                            <p>Boxes: <strong id="adminCount">0</strong></p>
+                            <p>Scanned: <strong id="adminScanned">0</strong></p>
+                            <p>Shredded: <strong id="adminShredded">0</strong></p>
+                        </div>
+                    </div>
+                    <div class="breakdown-card">
+                        <div class="breakdown-header misc-category">Miscellaneous</div>
+                        <div class="breakdown-content">
+                            <p>Boxes: <strong id="miscCount">0</strong></p>
+                            <p>Scanned: <strong id="miscScanned">0</strong></p>
+                            <p>Shredded: <strong id="miscShredded">0</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section notes-section">
+                <h3 class="editable-heading" contenteditable="false">Additional Notes & Observations</h3>
+                <div class="editable-content notes-area" contenteditable="false">
+                    <p>Record any additional observations, issues encountered, or special circumstances during the audit process:</p>
+                    <p>_________________________________________________________________________________</p>
+                    <p>_________________________________________________________________________________</p>
+                    <p>_________________________________________________________________________________</p>
+                </div>
+            </div>
+
+            <div class="section signature-section">
+                <h3 class="editable-heading" contenteditable="false">Audit Certification</h3>
+                <div class="signature-blocks">
+                    <div class="signature-block">
+                        <p><strong>Auditor Signature:</strong></p>
+                        <p>Name: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Signature: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Date: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    </div>
+                    <div class="signature-block">
+                        <p><strong>Supervisor/Manager Approval:</strong></p>
+                        <p>Name: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Signature: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                        <p>Date: <span class="editable-inline" contenteditable="false">_______________________________</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section compliance-footer">
+                <p class="editable-content" contenteditable="false"><strong>Compliance Statement:</strong> This audit trail has been completed in accordance with UK GDPR, the Data Protection Act 2018, and all applicable data protection laws. All scanning and shredding activities have been conducted securely and documented for compliance purposes. This record must be retained as per the organization's data retention policy.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="audit-trail.js"></script>
+</body>
+</html>
