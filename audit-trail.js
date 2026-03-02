@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
     loadTemplates();
     generateAuditRefNumber();
     
-    // Add 5 initial empty rows for immediate use
-    for (let i = 0; i < 5; i++) {
+    // Add 10 initial empty rows for immediate use (users can add more with "Add Box Entry" button)
+    for (let i = 0; i < 10; i++) {
         addBoxEntry();
     }
     
@@ -150,15 +150,21 @@ document.addEventListener('DOMContentLoaded', function() {
         let miscCount = 0, miscScanned = 0, miscShredded = 0;
         
         rows.forEach(row => {
-            const category = row.querySelector('.box-category').value;
-            const scanned = row.querySelector('.box-scanned').checked;
-            const shredded = row.querySelector('.box-shredded').checked;
+            const categorySelect = row.querySelector('.box-category');
+            const scannedCheckbox = row.querySelector('.box-scanned');
+            const shreddedCheckbox = row.querySelector('.box-shredded');
+            
+            if (!categorySelect || !scannedCheckbox || !shreddedCheckbox) return;
+            
+            const category = categorySelect.value;
+            const scanned = scannedCheckbox.checked;
+            const shredded = shreddedCheckbox.checked;
             
             if (scanned) totalScanned++;
             if (shredded) totalShredded++;
             if (scanned && shredded) totalBoth++;
             
-            // Category breakdown
+            // Category breakdown - only count if a category is selected
             if (category === 'HR') {
                 hrCount++;
                 if (scanned) hrScanned++;
@@ -179,27 +185,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Update summary cards
-        document.getElementById('totalBoxes').textContent = totalBoxes;
-        document.getElementById('totalScanned').textContent = totalScanned;
-        document.getElementById('totalShredded').textContent = totalShredded;
-        document.getElementById('totalBoth').textContent = totalBoth;
+        const totalBoxesEl = document.getElementById('totalBoxes');
+        const totalScannedEl = document.getElementById('totalScanned');
+        const totalShreddedEl = document.getElementById('totalShredded');
+        const totalBothEl = document.getElementById('totalBoth');
+        
+        if (totalBoxesEl) totalBoxesEl.textContent = totalBoxes;
+        if (totalScannedEl) totalScannedEl.textContent = totalScanned;
+        if (totalShreddedEl) totalShreddedEl.textContent = totalShredded;
+        if (totalBothEl) totalBothEl.textContent = totalBoth;
         
         // Update category breakdown
-        document.getElementById('hrCount').textContent = hrCount;
-        document.getElementById('hrScanned').textContent = hrScanned;
-        document.getElementById('hrShredded').textContent = hrShredded;
+        const hrCountEl = document.getElementById('hrCount');
+        const hrScannedEl = document.getElementById('hrScanned');
+        const hrShreddedEl = document.getElementById('hrShredded');
         
-        document.getElementById('residentsCount').textContent = residentsCount;
-        document.getElementById('residentsScanned').textContent = residentsScanned;
-        document.getElementById('residentsShredded').textContent = residentsShredded;
+        if (hrCountEl) hrCountEl.textContent = hrCount;
+        if (hrScannedEl) hrScannedEl.textContent = hrScanned;
+        if (hrShreddedEl) hrShreddedEl.textContent = hrShredded;
         
-        document.getElementById('adminCount').textContent = adminCount;
-        document.getElementById('adminScanned').textContent = adminScanned;
-        document.getElementById('adminShredded').textContent = adminShredded;
+        const residentsCountEl = document.getElementById('residentsCount');
+        const residentsScannedEl = document.getElementById('residentsScanned');
+        const residentsShreddedEl = document.getElementById('residentsShredded');
         
-        document.getElementById('miscCount').textContent = miscCount;
-        document.getElementById('miscScanned').textContent = miscScanned;
-        document.getElementById('miscShredded').textContent = miscShredded;
+        if (residentsCountEl) residentsCountEl.textContent = residentsCount;
+        if (residentsScannedEl) residentsScannedEl.textContent = residentsScanned;
+        if (residentsShreddedEl) residentsShreddedEl.textContent = residentsShredded;
+        
+        const adminCountEl = document.getElementById('adminCount');
+        const adminScannedEl = document.getElementById('adminScanned');
+        const adminShreddedEl = document.getElementById('adminShredded');
+        
+        if (adminCountEl) adminCountEl.textContent = adminCount;
+        if (adminScannedEl) adminScannedEl.textContent = adminScanned;
+        if (adminShreddedEl) adminShreddedEl.textContent = adminShredded;
+        
+        const miscCountEl = document.getElementById('miscCount');
+        const miscScannedEl = document.getElementById('miscScanned');
+        const miscShreddedEl = document.getElementById('miscShredded');
+        
+        if (miscCountEl) miscCountEl.textContent = miscCount;
+        if (miscScannedEl) miscScannedEl.textContent = miscScanned;
+        if (miscShreddedEl) miscShreddedEl.textContent = miscShredded;
     }
 
     function saveAsTemplate() {
