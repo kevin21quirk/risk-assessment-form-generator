@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadTemplates();
     generateAuditRefNumber();
+    
+    // Add 5 initial empty rows for immediate use
+    for (let i = 0; i < 5; i++) {
+        addBoxEntry();
+    }
+    
     updateSummary();
 
     function logout() {
@@ -108,12 +114,17 @@ document.addEventListener('DOMContentLoaded', function() {
         tableBody.appendChild(row);
         boxCounter++;
         
-        // Add event listeners to update summary
+        // Add event listeners to update summary in real-time
         const checkboxes = row.querySelectorAll('input[type="checkbox"]');
         const categorySelect = row.querySelector('.box-category');
+        const textInputs = row.querySelectorAll('input[type="text"]');
         
         checkboxes.forEach(cb => cb.addEventListener('change', updateSummary));
         categorySelect.addEventListener('change', updateSummary);
+        textInputs.forEach(input => {
+            input.addEventListener('input', updateSummary);
+            input.addEventListener('change', updateSummary);
+        });
         
         updateSummary();
     }
