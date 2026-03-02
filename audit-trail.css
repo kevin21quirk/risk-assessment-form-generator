@@ -468,11 +468,13 @@ body {
     body {
         background: white;
         padding: 0;
+        margin: 0;
     }
 
     .container {
         box-shadow: none;
         border-radius: 0;
+        max-width: 100%;
     }
 
     .no-print {
@@ -490,15 +492,63 @@ body {
 
     .section {
         page-break-inside: avoid;
+        margin-bottom: 20px;
+    }
+
+    .table-responsive {
+        overflow: visible;
     }
 
     .audit-table {
-        font-size: 0.8em;
+        width: 100%;
+        font-size: 9px;
+        border-collapse: collapse;
+        table-layout: fixed;
     }
 
     .audit-table th,
     .audit-table td {
-        padding: 8px;
+        padding: 6px 4px;
+        border: 1px solid #000;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .audit-table th {
+        background-color: #343a40 !important;
+        color: white !important;
+        font-weight: bold;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .audit-table input,
+    .audit-table select,
+    .audit-table button {
+        border: none;
+        background: transparent;
+        font-size: 9px;
+        padding: 0;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .breakdown-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .breakdown-header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .signature-blocks {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
     }
 }
 

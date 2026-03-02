@@ -344,7 +344,36 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentDate = new Date().toISOString().split('T')[0];
         const filename = `Audit_Trail_${currentDate}.pdf`;
         
-        const element = auditContent;
+        // Create a print-friendly version by hiding inputs and showing values
+        const printVersion = document.createElement('div');
+        printVersion.innerHTML = auditContent.innerHTML;
+        printVersion.style.width = '100%';
+        
+        // Convert table inputs to text for better PDF rendering
+        const tableBody = printVersion.querySelector('#auditTableBody');
+        if (tableBody) {
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach(row => {
+                // Replace input fields with their values
+                const boxNumber = row.querySelector('.box-number')?.value || '';
+                const category = row.querySelector('.box-category')?.value || '';
+                const description = row.querySelector('.box-description')?.value || '';
+                const dateRange = row.querySelector('.box-daterange')?.value || '';
+                const scanned = row.querySelector('.box-scanned')?.checked ? '✓' : '';
+                const shredded = row.querySelector('.box-shredded')?.checked ? '✓' : '';
+                const notes = row.querySelector('.box-notes')?.value || '';
+                
+                row.innerHTML = `
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-size: 10px;">${boxNumber}</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-size: 10px;">${category}</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-size: 10px;">${description}</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-size: 10px;">${dateRange}</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center; font-size: 14px;">${scanned}</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; text-align: center; font-size: 14px;">${shredded}</td>
+                    <td style="padding: 8px; border: 1px solid #dee2e6; font-size: 10px;">${notes}</td>
+                `;
+            });
+        }
         
         const opt = {
             margin: [10, 10, 10, 10],
@@ -353,7 +382,10 @@ document.addEventListener('DOMContentLoaded', function() {
             html2canvas: { 
                 scale: 2,
                 useCORS: true,
-                letterRendering: true
+                letterRendering: true,
+                scrollY: 0,
+                scrollX: 0,
+                windowWidth: 1200
             },
             jsPDF: { 
                 unit: 'mm', 
@@ -363,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
         };
         
-        html2pdf().set(opt).from(element).save();
+        html2pdf().set(opt).from(printVersion).save();
     }
 
     function saveAuditData() {
