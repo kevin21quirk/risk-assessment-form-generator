@@ -30,9 +30,17 @@ document.addEventListener('DOMContentLoaded', function() {
     loadTemplates();
     generateAuditRefNumber();
     
-    // Add 10 initial empty rows for immediate use (users can add more with "Add Box Entry" button)
-    for (let i = 0; i < 10; i++) {
-        addBoxEntry();
+    // Try to load saved audit data first
+    const savedData = loadAuditData();
+    
+    if (savedData) {
+        // Restore saved data
+        restoreAuditData(savedData);
+    } else {
+        // Add 10 initial empty rows for immediate use (users can add more with "Add Box Entry" button)
+        for (let i = 0; i < 10; i++) {
+            addBoxEntry();
+        }
     }
     
     updateSummary();
@@ -119,11 +127,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const categorySelect = row.querySelector('.box-category');
         const textInputs = row.querySelectorAll('input[type="text"]');
         
-        checkboxes.forEach(cb => cb.addEventListener('change', updateSummary));
-        categorySelect.addEventListener('change', updateSummary);
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                updateSummary();
+                saveAuditData();
+            });
+        });
+        categorySelect.addEventListener('change', () => {
+            updateSummary();
+            saveAuditData();
+        });
         textInputs.forEach(input => {
-            input.addEventListener('input', updateSummary);
-            input.addEventListener('change', updateSummary);
+            input.addEventListener('input', () => {
+                updateSummary();
+                saveAuditData();
+            });
+            input.addEventListener('change', () => {
+                updateSummary();
+                saveAuditData();
+            });
         });
         
         updateSummary();
@@ -133,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (confirm('Are you sure you want to delete this box entry?')) {
             button.closest('tr').remove();
             updateSummary();
+            saveAuditData();
         }
     };
 
@@ -342,4 +365,113 @@ document.addEventListener('DOMContentLoaded', function() {
         
         html2pdf().set(opt).from(element).save();
     }
+
+    function saveAuditData() {
+        const rows = document.querySelectorAll('#auditTableBody tr');
+        const auditData = {
+            boxes: [],
+            boxCounter: boxCounter
+        };
+        
+        rows.forEach(row => {
+            const boxNumber = row.querySelector('.box-number')?.value || '';
+            const category = row.querySelector('.box-category')?.value || '';
+            const description = row.querySelector('.box-description')?.value || '';
+            const dateRange = row.querySelector('.box-daterange')?.value || '';
+            const scanned = row.querySelector('.box-scanned')?.checked || false;
+            const shredded = row.querySelector('.box-shredded')?.checked || false;
+            const notes = row.querySelector('.box-notes')?.value || '';
+            
+            auditData.boxes.push({
+                boxNumber,
+                category,
+                description,
+                dateRange,
+                scanned,
+                shredded,
+                notes
+            });
+        });
+        
+        localStorage.setItem('currentAuditData', JSON.stringify(auditData));
+    }
+
+    function loadAuditData() {
+        const savedData = localStorage.getItem('currentAuditData');
+        if (savedData) {
+            try {
+                return JSON.parse(savedData);
+            } catch (e) {
+                console.error('Error loading audit data:', e);
+                return null;
+            }
+        }
+        return null;
+    }
+
+    function restoreAuditData(data) {
+        if (!data || !data.boxes) return;
+        
+        boxCounter = data.boxCounter || 1;
+        
+        data.boxes.forEach(boxData => {
+            const tableBody = document.getElementById('auditTableBody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><input type="text" value="${boxData.boxNumber}" class="box-number"></td>
+                <td>
+                    <select class="box-category">
+                        <option value="">Select...</option>
+                        <option value="HR" ${boxData.category === 'HR' ? 'selected' : ''}>HR</option>
+                        <option value="Residents" ${boxData.category === 'Residents' ? 'selected' : ''}>Residents</option>
+                        <option value="Admin" ${boxData.category === 'Admin' ? 'selected' : ''}>Admin</option>
+                        <option value="Misc" ${boxData.category === 'Misc' ? 'selected' : ''}>Misc</option>
+                    </select>
+                </td>
+                <td><input type="text" value="${boxData.description}" placeholder="Brief description" class="box-description"></td>
+                <td><input type="text" value="${boxData.dateRange}" placeholder="e.g., 2020-2022" class="box-daterange"></td>
+                <td style="text-align: center;"><input type="checkbox" class="box-scanned" ${boxData.scanned ? 'checked' : ''}></td>
+                <td style="text-align: center;"><input type="checkbox" class="box-shredded" ${boxData.shredded ? 'checked' : ''}></td>
+                <td><input type="text" value="${boxData.notes}" placeholder="Additional notes" class="box-notes"></td>
+                <td class="no-print" style="text-align: center;">
+                    <button class="btn btn-delete" onclick="deleteBoxEntry(this)">Delete</button>
+                </td>
+            `;
+            
+            tableBody.appendChild(row);
+            
+            // Add event listeners to restored rows
+            const checkboxes = row.querySelectorAll('input[type="checkbox"]');
+            const categorySelect = row.querySelector('.box-category');
+            const textInputs = row.querySelectorAll('input[type="text"]');
+            
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    updateSummary();
+                    saveAuditData();
+                });
+            });
+            categorySelect.addEventListener('change', () => {
+                updateSummary();
+                saveAuditData();
+            });
+            textInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    updateSummary();
+                    saveAuditData();
+                });
+                input.addEventListener('change', () => {
+                    updateSummary();
+                    saveAuditData();
+                });
+            });
+        });
+    }
+
+    window.clearAuditData = function() {
+        if (confirm('Are you sure you want to clear all audit data and start fresh? This cannot be undone.')) {
+            localStorage.removeItem('currentAuditData');
+            location.reload();
+        }
+    };
 });
