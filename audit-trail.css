@@ -575,20 +575,29 @@ body {
         background: transparent !important;
         font-size: 8px !important;
         padding: 2px !important;
-        width: 100% !important;
+        width: auto !important;
+        min-width: 100% !important;
+        max-width: none !important;
         -webkit-appearance: none !important;
         appearance: none !important;
         outline: none !important;
         box-shadow: none !important;
         color: #000 !important;
         font-family: Arial, sans-serif !important;
-        white-space: normal !important;
+        white-space: pre-wrap !important;
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
         text-overflow: clip !important;
         overflow: visible !important;
         height: auto !important;
         min-height: auto !important;
+        display: inline-block !important;
+    }
+    
+    .audit-table .box-description,
+    .audit-table .box-notes {
+        white-space: pre-wrap !important;
+        word-break: break-word !important;
     }
 
     .audit-table input[type="checkbox"] {
