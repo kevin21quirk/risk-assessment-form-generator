@@ -111,6 +111,14 @@ document.addEventListener('DOMContentLoaded', function() {
             </td>
             <td><input type="text" placeholder="Brief description" class="box-description"></td>
             <td><input type="text" placeholder="e.g., 2020-2022" class="box-daterange"></td>
+            <td>
+                <select class="box-condition">
+                    <option value="">Select...</option>
+                    <option value="Rough">Rough</option>
+                    <option value="Good">Good</option>
+                    <option value="Excellent">Excellent</option>
+                </select>
+            </td>
             <td style="text-align: center;"><input type="checkbox" class="box-scanned"></td>
             <td style="text-align: center;"><input type="checkbox" class="box-shredded"></td>
             <td><input type="text" placeholder="Additional notes" class="box-notes"></td>
@@ -125,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add event listeners to update summary in real-time
         const checkboxes = row.querySelectorAll('input[type="checkbox"]');
         const categorySelect = row.querySelector('.box-category');
+        const conditionSelect = row.querySelector('.box-condition');
         const textInputs = row.querySelectorAll('input[type="text"]');
         
         checkboxes.forEach(cb => {
@@ -135,6 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         categorySelect.addEventListener('change', () => {
             updateSummary();
+            saveAuditData();
+        });
+        conditionSelect.addEventListener('change', () => {
             saveAuditData();
         });
         textInputs.forEach(input => {
@@ -357,6 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const category = row.querySelector('.box-category')?.value || '';
             const description = row.querySelector('.box-description')?.value || '';
             const dateRange = row.querySelector('.box-daterange')?.value || '';
+            const condition = row.querySelector('.box-condition')?.value || '';
             const scanned = row.querySelector('.box-scanned')?.checked || false;
             const shredded = row.querySelector('.box-shredded')?.checked || false;
             const notes = row.querySelector('.box-notes')?.value || '';
@@ -366,6 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 category,
                 description,
                 dateRange,
+                condition,
                 scanned,
                 shredded,
                 notes
@@ -409,6 +423,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 </td>
                 <td><input type="text" value="${boxData.description}" placeholder="Brief description" class="box-description"></td>
                 <td><input type="text" value="${boxData.dateRange}" placeholder="e.g., 2020-2022" class="box-daterange"></td>
+                <td>
+                    <select class="box-condition">
+                        <option value="">Select...</option>
+                        <option value="Rough" ${boxData.condition === 'Rough' ? 'selected' : ''}>Rough</option>
+                        <option value="Good" ${boxData.condition === 'Good' ? 'selected' : ''}>Good</option>
+                        <option value="Excellent" ${boxData.condition === 'Excellent' ? 'selected' : ''}>Excellent</option>
+                    </select>
+                </td>
                 <td style="text-align: center;"><input type="checkbox" class="box-scanned" ${boxData.scanned ? 'checked' : ''}></td>
                 <td style="text-align: center;"><input type="checkbox" class="box-shredded" ${boxData.shredded ? 'checked' : ''}></td>
                 <td><input type="text" value="${boxData.notes}" placeholder="Additional notes" class="box-notes"></td>
@@ -422,6 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add event listeners to restored rows
             const checkboxes = row.querySelectorAll('input[type="checkbox"]');
             const categorySelect = row.querySelector('.box-category');
+            const conditionSelect = row.querySelector('.box-condition');
             const textInputs = row.querySelectorAll('input[type="text"]');
             
             checkboxes.forEach(cb => {
@@ -432,6 +455,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             categorySelect.addEventListener('change', () => {
                 updateSummary();
+                saveAuditData();
+            });
+            conditionSelect.addEventListener('change', () => {
                 saveAuditData();
             });
             textInputs.forEach(input => {

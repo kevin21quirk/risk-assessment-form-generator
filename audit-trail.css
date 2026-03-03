@@ -420,6 +420,43 @@ body {
     font-weight: bold;
 }
 
+.scanning-specs {
+    background: #fff9e6;
+    border: 2px solid #ffc107;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.scanning-specs h3 {
+    margin-top: 0;
+    color: #856404;
+}
+
+.specs-content {
+    margin-top: 15px;
+}
+
+.specs-content p {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+.specs-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0;
+}
+
+.specs-content ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ffeaa7;
+    font-size: 0.95em;
+}
+
+.specs-content ul li:last-child {
+    border-bottom: none;
+}
+
 .compliance-footer {
     background: #e9ecef;
     border: 2px solid #495057;
