@@ -543,25 +543,28 @@ body {
 
     .audit-table {
         width: 100%;
-        font-size: 7px;
+        font-size: 8px;
         border-collapse: collapse;
         table-layout: auto;
     }
 
     .audit-table th,
     .audit-table td {
-        padding: 4px 3px;
+        padding: 5px 4px;
         border: 1px solid #333;
         word-wrap: break-word;
         overflow-wrap: break-word;
+        white-space: normal;
         vertical-align: top;
+        max-width: none;
+        overflow: visible;
     }
 
     .audit-table th {
         background-color: #343a40 !important;
         color: white !important;
         font-weight: bold;
-        font-size: 7px;
+        font-size: 8px;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
@@ -578,7 +581,14 @@ body {
         outline: none !important;
         box-shadow: none !important;
         color: #000 !important;
-        font-family: 'Times New Roman', Times, serif !important;
+        font-family: Arial, sans-serif !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        text-overflow: clip !important;
+        overflow: visible !important;
+        height: auto !important;
+        min-height: auto !important;
     }
 
     .audit-table input[type="checkbox"] {
