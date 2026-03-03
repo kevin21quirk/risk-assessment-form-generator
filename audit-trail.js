@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </td>
             <td style="text-align: center;"><input type="checkbox" class="box-scanned"></td>
             <td style="text-align: center;"><input type="checkbox" class="box-shredded"></td>
+            <td style="text-align: center;"><input type="checkbox" class="box-sharepoint"></td>
             <td><input type="text" placeholder="Additional notes" class="box-notes"></td>
             <td class="no-print" style="text-align: center;">
                 <button class="btn btn-delete" onclick="deleteBoxEntry(this)">Delete</button>
@@ -372,6 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const condition = row.querySelector('.box-condition')?.value || '';
             const scanned = row.querySelector('.box-scanned')?.checked || false;
             const shredded = row.querySelector('.box-shredded')?.checked || false;
+            const sharepoint = row.querySelector('.box-sharepoint')?.checked || false;
             const notes = row.querySelector('.box-notes')?.value || '';
             
             auditData.boxes.push({
@@ -382,6 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 condition,
                 scanned,
                 shredded,
+                sharepoint,
                 notes
             });
         });
@@ -433,6 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </td>
                 <td style="text-align: center;"><input type="checkbox" class="box-scanned" ${boxData.scanned ? 'checked' : ''}></td>
                 <td style="text-align: center;"><input type="checkbox" class="box-shredded" ${boxData.shredded ? 'checked' : ''}></td>
+                <td style="text-align: center;"><input type="checkbox" class="box-sharepoint" ${boxData.sharepoint ? 'checked' : ''}></td>
                 <td><input type="text" value="${boxData.notes}" placeholder="Additional notes" class="box-notes"></td>
                 <td class="no-print" style="text-align: center;">
                     <button class="btn btn-delete" onclick="deleteBoxEntry(this)">Delete</button>
